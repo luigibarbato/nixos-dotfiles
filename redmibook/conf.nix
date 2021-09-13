@@ -1,15 +1,15 @@
-{ config, pkgs, ... }:
+{ sys, config, pkgs, ... }:
 
 {
     imports =
     [
+      ../hardware-configuration.nix
       # Include common configuration
       ../sys/boot.nix
       ../sys/common.nix
       ../sys/audio/pipewire.nix
       ../sys/user.nix
       ../pkgs/desktop/DE/gnome.nix
-
     ];
 
   # Enable touchpad support.
