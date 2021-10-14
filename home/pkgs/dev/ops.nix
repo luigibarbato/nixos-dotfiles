@@ -15,5 +15,6 @@
     docker-compose
     terraform_0_15
     git
+    openvpn
   ];
 }

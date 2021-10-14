@@ -12,19 +12,27 @@ in
     ./pkgs/dev/languages.nix
     ./pkgs/dev/ops.nix
     ./pkgs/dev/tools.nix
-    ## ...AND THEIR CONFIGS
+    ./pkgs/shell/starship.nix
+    ./pkgs/shell/alacritty.nix
+    ./pkgs/shell/zsh.nix
+    ./pkgs/shell/fish.nix
+    ./pkgs/common.nix
+     ## ...AND THEIR CONFIGS
     ./pkgs/configs/dev/git.nix
-
+    ./pkgs/configs/dev/gpg.nix
+    ./pkgs/configs/accounts.nix
+    ./pkgs/configs/firefox.nix
   ];
 
+        
   home.username = username;
   home.homeDirectory = homedir;
-  home.stateVersion = "21.03";
+  home.stateVersion = "21.05";
 
   programs.home-manager = {
     enable = true;
     path = "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz";
   };
 
-  manual.manpages.enable = false;
+
 }

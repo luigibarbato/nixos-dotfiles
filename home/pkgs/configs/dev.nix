@@ -2,9 +2,9 @@
   programs.git = {
     enable = true;
     userName = "Luigi Barbato";
-    userEmail = "l.barbato11@studenti.unisa.it";
+    userEmail = "luigi.barbato@sighup.io";
     signing = {
-      key = "l.barbato11@studenti.unisa.it";
+      key = "0F451D43A5190DF8";
       signByDefault = true;
     };
     ignores = [ "*.iml" ".idea/" ".vscode" ];
