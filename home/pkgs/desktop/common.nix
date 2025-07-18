@@ -12,11 +12,10 @@
     mpv
     youtube-dl
     spotify
-    pop-shell
     # mail-notify
   ];
 
-  gtk = {
+/*   gtk = {
     enable = true;
     iconTheme = {
       name = "Flat-Remix-Blue-Dark";
@@ -36,5 +35,5 @@
       gtk-application-prefer-dark-theme = 1;
     };
 
-  };
+  }; */
 }

@@ -12,6 +12,5 @@ in
     rustup
     go
     python39
-    adoptopenjdk-bin
   ];
 }
