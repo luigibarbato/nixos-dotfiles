@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
-let
-  username = builtins.getEnv "USER";
-  homedir = builtins.getEnv "HOME";
-in
+# Removed unused let/in block
 {
   imports = [
 
@@ -20,19 +17,10 @@ in
      ## ...AND THEIR CONFIGS
     ./pkgs/configs/dev/git.nix
     ./pkgs/configs/dev/gpg.nix
-    ./pkgs/configs/accounts.nix
-    ./pkgs/configs/firefox.nix
   ];
 
-        
-  home.username = username;
-  home.homeDirectory = homedir;
-  home.stateVersion = "21.05";
-
-  programs.home-manager = {
-    enable = true;
-    path = "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz";
-  };
-
-
+  home.username = "luigibarbato";
+  home.homeDirectory = "/home/luigibarbato";
+  programs.home-manager.enable = true;
+  home.stateVersion = "24.05";
 }

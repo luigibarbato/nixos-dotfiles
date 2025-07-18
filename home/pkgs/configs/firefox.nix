@@ -1,3 +1,0 @@
-{
-    programs.firefox.enableGnomeExtensions = true;
-}

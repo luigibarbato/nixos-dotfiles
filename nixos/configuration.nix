@@ -1,43 +1,59 @@
-{ sys, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    # Include common configuration
-    ./sys/boot.nix
-    ./sys/common.nix
-    ./sys/audio/pipewire.nix
-    ./sys/user.nix
-    ./sys/desktop/DE/gnome.nix
-    ./sys/desktop/sway/bundle.nix
-
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-
-  # Enable touchpad support.
-  services.xserver.libinput = {
-    enable = true;
-    touchpad = {
-      naturalScrolling = true;
-      additionalOptions = ''MatchIsTouchpad "on"'';
-      tapping = true;
-    };
-  };
-
-  environment.systemPackages = [ pkgs.libsoup pkgs.libgnome-keyring pkgs.libnotify pkgs.libaccounts-glib pkgs.gnome-online-accounts pkgs.gnupg pkgs.pinentry-gnome pkgs.glib];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "redmibook";
+  time.timeZone = "Europe/Rome";
 
+  users.users.luigibarbato = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" ];
+    shell = pkgs.zsh;
+  };
+
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
+
+  programs.zsh.enable = true;
+  services.openssh.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    git curl wget neofetch htop
+    zsh unzip zip
+    gnome.gnome-tweaks
+    gnomeExtensions.appindicator
+  ];
+
+  security.polkit.enable = true;
+
+  # Hyperland
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  services.dbus.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+
+  system.stateVersion = "24.05";
 }
