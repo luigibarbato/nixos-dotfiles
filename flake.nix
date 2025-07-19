@@ -1,5 +1,5 @@
 {
-  description = "NixOS config with GNOME + Hyperland + Dev setup";
+  description = "NixOS config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -19,18 +19,17 @@
           config.allowUnfree = true;
         };
       in {
-        packages.default = pkgs.hello;
       }) // {
         nixosConfigurations."xiaomi-redbook" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             ./nixos/configuration.nix
-            nixos-hardware.nixosModules.common-cpu-intel # o amd
+            nixos-hardware.nixosModules.xiaomi-redmibook-15-pro-2021
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.your-username = import ./home/username.nix;
+              home-manager.users.luigibarbato = import ./home/luigibarbato.nix;
             }
           ];
         };
