@@ -13,20 +13,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/04fc5070-6087-4b82-a251-b02d3b998196";
-      fsType = "ext4";
-    };
-
-  boot.initrd.luks.devices."luks-ae6e2dc9-5682-4b23-8736-4cd2f7433639".device = "/dev/disk/by-uuid/ae6e2dc9-5682-4b23-8736-4cd2f7433639";
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FA2E-D8E2";
-      fsType = "vfat";
-    };
-
-  swapDevices = [ ];
-
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
