@@ -35,11 +35,12 @@
   security.polkit.enable = true;
 
   # Hyperland
-  programs.hyprland = {
+/*   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-
+ */
+ 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
   };
