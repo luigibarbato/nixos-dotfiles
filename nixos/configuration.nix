@@ -40,7 +40,7 @@
     xwayland.enable = true;
   };
  */
- 
+
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
   };
@@ -52,7 +52,6 @@
     pulse.enable = true;
   };
 
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
 
