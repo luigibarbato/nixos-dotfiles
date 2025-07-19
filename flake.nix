@@ -24,7 +24,9 @@
           system = "x86_64-linux";
           modules = [
             ./nixos/configuration.nix
-            nixos-hardware.nixosModules.xiaomi-redmibook-15-pro-2021
+            nixos-hardware.nixosModules.common-pc-ssd
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-gpu-amd
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
