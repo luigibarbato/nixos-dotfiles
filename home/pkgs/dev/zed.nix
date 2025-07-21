@@ -1,10 +1,9 @@
-{ self, pkgs, lib, ... }:
+{ lib, pkgs-unstable, ... }:
 
 {
-  config = {
     programs.zed-editor = {
       enable = true;
-      package = pkgs.zed-editor;
+      package = pkgs-unstable.zed-editor;
       extensions = [
         "basher"
         "codebook"
@@ -93,8 +92,8 @@
         lsp = {
           gopls = {
             initialization_options = {
-              buildFlags = [];
-              directoryFilters = [];
+              buildFlags = [ ];
+              directoryFilters = [ ];
               codelenses = {
                 generate = true;
                 regenerate_cgo = true;
@@ -128,7 +127,7 @@
             };
           };
           nil = {
-            binary.path = lib.getExe pkgs.nil;
+            binary.path = lib.getExe pkgs-unstable.nil;
             initialization_options = {
               formatting.command = [ "nixpkgs-fmt" ];
             };
@@ -168,31 +167,4 @@
       # Example hardcoded tasks:
       { label = "build"; command = "go build ./..."; }
     ];
-
-    home.packages = with pkgs; [
-      ## EDITORS ##
-      vscode
-      micro
-      ## UTILS ##
-      k9s
-      lazygit
-      lazydocker
-      gitkraken
-      nixpkgs-fmt
-      warp-terminal
-      ## CORE ##
-      gnumake
-      cmake
-      mmake
-      eza
-      bat
-      bats
-      fd
-      delta
-      dog
-      duf
-      ripgrep
-      procs
-    ];
   };
-}

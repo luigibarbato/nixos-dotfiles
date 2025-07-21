@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
-# Removed unused let/in block
 {
   imports = [
-
     ## PKGS TO INSTALL...
     ./pkgs/desktop/chat.nix
     ./pkgs/desktop/common.nix
@@ -14,8 +12,7 @@
     ./pkgs/shell/zsh.nix
     ./pkgs/common.nix
      ## ...AND THEIR CONFIGS
-    ./pkgs/configs/dev/git.nix
-    #./pkgs/configs/dev/gpg.nix
+    #./pkgs/configs/dev/git.nix
   ];
 
   home.username = "luigibarbato";

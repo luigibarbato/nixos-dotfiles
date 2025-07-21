@@ -1,21 +1,22 @@
-{ pkgs, config, ... }:
+{ pkgs, config, system, inputs, ... }:
 
 {
-  home.packages = with pkgs; [
-    ### BROWSERS
-    firefox-wayland
-    google-chrome
-    ## UTILS
-    flameshot
-    ## MULTIMEDIA
-    ffmpeg
-    mpv
-    youtube-dl
-    spotify
-    # mail-notify
-  ];
 
-/*   gtk = {
+home.packages = [
+  inputs.zen-browser.packages."${system}".default
+] ++ (with pkgs; [
+  firefox-wayland
+  google-chrome
+  flameshot
+  ffmpeg
+  mpv
+  yt-dlp
+  spotify
+]);
+
+
+  # GTK Configuration (Uncomment to enable)
+  /* gtk = {
     enable = true;
     iconTheme = {
       name = "Flat-Remix-Blue-Dark";
@@ -34,6 +35,5 @@
       gtk-cursor-theme-name = "breeze";
       gtk-application-prefer-dark-theme = 1;
     };
-
   }; */
 }

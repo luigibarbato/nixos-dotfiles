@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
-  nodejs = pkgs.nodejs-14_x;
+  nodejs = pkgs.nodejs_24;
   yarn = pkgs.yarn;
+  python = pkgs.python314;
 in
 {
   home.packages = with pkgs; [
@@ -11,6 +12,6 @@ in
     meson
     rustup
     go
-    python39
+    python
   ];
 }
