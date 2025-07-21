@@ -7,6 +7,15 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.loader.grub.device = "/dev/sda";
+
   networking.hostName = "redmibook";
   time.timeZone = "Europe/Rome";
 
@@ -28,9 +37,15 @@
   environment.systemPackages = with pkgs; [
     git curl wget neofetch htop
     zsh unzip zip
-    gnome.gnome-tweaks
+    pkgs.gnome-tweaks
     gnomeExtensions.appindicator
   ];
+
+  programs = {
+    gnupg.agent.enable = true;
+    gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
+    ssh.askPassword = "";
+  };
 
   security.polkit.enable = true;
 
