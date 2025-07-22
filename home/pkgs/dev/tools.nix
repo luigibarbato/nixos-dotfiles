@@ -193,6 +193,8 @@
       duf
       ripgrep
       procs
+      code-cursor
+      diff-so-fancy
     ];
   };
 }
