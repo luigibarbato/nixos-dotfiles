@@ -56,6 +56,13 @@
   };
  */
 
+# To avoid “too many open files” error
+  security.pam.loginLimits = [
+  { domain = "*"; type = "soft"; item = "nofile"; value = "65536"; }
+  { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
+];
+
+
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
   };
