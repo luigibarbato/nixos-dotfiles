@@ -12,6 +12,10 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
+    gauntlet = {
+      url = "github:project-gauntlet/gauntlet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 outputs = inputs@{ self, nixpkgs, home-manager, flake-utils, nixos-hardware, ... }: let

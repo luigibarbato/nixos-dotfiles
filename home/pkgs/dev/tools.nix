@@ -1,4 +1,4 @@
-{ self, pkgs, lib, ... }:
+{ self, pkgs, lib, inputs, ... }:
 
 {
   config = {
@@ -170,9 +170,11 @@
     ];
 
     home.packages = with pkgs; [
+      inputs.gauntlet.packages."${system}".default
       ## EDITORS ##
       vscode
       micro
+      code-cursor
       ## UTILS ##
       k9s
       lazygit
@@ -180,6 +182,8 @@
       gitkraken
       nixpkgs-fmt
       warp-terminal
+      tig
+      diff-so-fancy
       ## CORE ##
       gnumake
       cmake
@@ -193,8 +197,6 @@
       duf
       ripgrep
       procs
-      code-cursor
-      diff-so-fancy
     ];
   };
 }
