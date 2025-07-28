@@ -10,6 +10,7 @@
       df = "duf";
       ls = "exa";
       conf = "code $HOME/nixOs-dotfiles/";
+      g = "git";
     };
 
     sessionVariables = {
