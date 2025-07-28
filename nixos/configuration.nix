@@ -77,5 +77,7 @@
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
 
+  services.thermald.enable = true;
+
   system.stateVersion = "24.05";
 }
