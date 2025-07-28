@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -35,10 +33,19 @@
   services.openssh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    git curl wget neofetch htop
-    zsh unzip zip
+    git
+    curl
+    wget
+    neofetch
+    htop
+    zsh
+    unzip
+    zip
     pkgs.gnome-tweaks
     gnomeExtensions.appindicator
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.just-perfection
+    gnomeExtensions.arc-menu
   ];
 
   programs = {
@@ -50,22 +57,29 @@
   security.polkit.enable = true;
 
   # Hyperland
-/*   programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
- */
+  /* programs.hyprland = {
+       enable = true;
+       xwayland.enable = true;
+     };
+  */
 
-# To avoid “too many open files” error
+  # To avoid “too many open files” error
   security.pam.loginLimits = [
-  { domain = "*"; type = "soft"; item = "nofile"; value = "65536"; }
-  { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
-];
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "65536";
+    }
+    {
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "1048576";
+    }
+  ];
 
-
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
+  environment.sessionVariables = { WLR_NO_HARDWARE_CURSORS = "1"; };
 
   services.dbus.enable = true;
   services.pipewire = {
@@ -79,5 +93,5 @@
 
   services.thermald.enable = true;
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
