@@ -7,6 +7,9 @@ let
     WORK_DIR = "$HOME/Work/";
     RADICAL_WORKDIR = "$HOME/Work/Radical";
     VOLUMIO_WORKDIR = "$HOME/Work/volumio";
+    DOCKER_BUILDKIT = "1";
+    EDITOR = "nvim";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
   };
 
   # Shell aliases
@@ -49,14 +52,52 @@ let
     k = "kubectl";
   };
 
-  # Functions (optional)
+  # Functions (bash/zsh compatible)
   functions = ''
-    mkcd() {
-      mkdir -p "$1" && cd "$1"
+    shell="$(basename "$SHELL")"
+
+    _common_improvements() {
+      _common_improve_history "$shell"
+      _common_keys_binding
     }
+
+    _common_improve_history() {
+      history_path="$HOME/.zsh_history"
+      shell=$1
+
+      if [ "$shell" = "bash" ]; then
+        history_path="$HOME/.bash_history"
+      fi
+
+      export HISTFILE=$history_path
+      export HISTSIZE=100000
+      export SAVEHIST=100000
+
+      # Zsh-specific options (no-op in Bash)
+      setopt extended_history 2>/dev/null || true
+      setopt hist_expire_dups_first 2>/dev/null || true
+      setopt hist_ignore_dups 2>/dev/null || true
+      setopt hist_ignore_space 2>/dev/null || true
+      setopt hist_verify 2>/dev/null || true
+      setopt inc_append_history 2>/dev/null || true
+      setopt share_history 2>/dev/null || true
+    }
+
+    _common_keys_binding() {
+      bindkey "^[[1;5C" forward-word 2>/dev/null || true
+      bindkey "^[[1;5D" backward-word 2>/dev/null || true
+      bindkey '^[[A' history-substring-search-up 2>/dev/null || true
+      bindkey '^[[B' history-substring-search-down 2>/dev/null || true
+    }
+
+    _tools_use_starship() {
+      if command -v starship > /dev/null; then
+        eval "$(starship init "$shell")"
+      fi
+    }
+
   '';
-in
-{
+in {
   home.sessionVariables = envVars;
 
   programs.bash.shellAliases = aliases;
