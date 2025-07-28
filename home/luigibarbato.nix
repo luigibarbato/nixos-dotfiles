@@ -12,7 +12,7 @@
     ./pkgs/shell/zsh.nix
     ./pkgs/common.nix
      ## ...AND THEIR CONFIGS
-    #./pkgs/configs/dev/git.nix
+    ./pkgs/configs/dev/shell-config.nix
   ];
 
   home.username = "luigibarbato";
