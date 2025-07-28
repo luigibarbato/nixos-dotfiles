@@ -184,6 +184,7 @@
       warp-terminal
       tig
       diff-so-fancy
+      tree
       thunderbird
       sublime-merge
       obsidian
