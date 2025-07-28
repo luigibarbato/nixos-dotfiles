@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   imports = [
     ## PKGS TO INSTALL...
     ./pkgs/desktop/chat.nix
@@ -11,12 +10,12 @@
     ./pkgs/shell/alacritty.nix
     ./pkgs/shell/zsh.nix
     ./pkgs/common.nix
-     ## ...AND THEIR CONFIGS
+    ## ...AND THEIR CONFIGS
     ./pkgs/configs/dev/shell-config.nix
   ];
 
   home.username = "luigibarbato";
   home.homeDirectory = "/home/luigibarbato";
   programs.home-manager.enable = true;
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 }

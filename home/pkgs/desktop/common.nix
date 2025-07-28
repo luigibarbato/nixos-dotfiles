@@ -1,39 +1,40 @@
-{ pkgs, config, system, inputs, ... }:
+{
+  pkgs,
+  config,
+  system,
+  inputs,
+  ...
+}:
 
 {
 
-home.packages = [
-  inputs.zen-browser.packages."${system}".default
-] ++ (with pkgs; [
-  firefox-wayland
-  google-chrome
-  flameshot
-  ffmpeg
-  mpv
-  yt-dlp
-  spotify
-]);
-
+  home.packages = [
+    inputs.zen-browser.packages."${system}".default
+  ]
+  ++ (with pkgs; [
+    firefox-wayland
+    google-chrome
+    flameshot
+    ffmpeg
+    mpv
+    yt-dlp
+    spotify
+  ]);
 
   # GTK Configuration (Uncomment to enable)
-  /* gtk = {
+  gtk = {
     enable = true;
     iconTheme = {
-      name = "Flat-Remix-Blue-Dark";
-      package = pkgs.flat-remix-icon-theme;
+      package = pkgs.tela-icon-theme;
+      name = "Tela-blue-dark";
     };
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome3.gnome_themes_standard;
+      package = pkgs.orchis-theme;
+      name = "Orchis-Grey-Dark";
     };
-    font =
-      {
-        package = pkgs.cantarell-fonts;
-        name = "Cantarell 12";
-      };
     gtk3.extraConfig = {
       gtk-cursor-theme-name = "breeze";
       gtk-application-prefer-dark-theme = 1;
     };
-  }; */
+  };
 }

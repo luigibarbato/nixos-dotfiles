@@ -178,6 +178,8 @@
       obsidian
       nixfmt
       flyctl
+      guake
+      pgadmin
       ## CORE ##
       gnumake
       cmake
