@@ -184,6 +184,11 @@
       warp-terminal
       tig
       diff-so-fancy
+      thunderbird
+      sublime-merge
+      obsidian
+      nixfmt
+      flyctl
       ## CORE ##
       gnumake
       cmake
