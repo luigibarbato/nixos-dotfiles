@@ -59,11 +59,7 @@
           version = "1";
         };
         format_on_save = "on";
-        autosave = {
-          after_delay = {
-            milliseconds = 1000;
-          };
-        };
+        autosave = { after_delay = { milliseconds = 1000; }; };
         auto_update = false;
         load_direnv = "shell_hook";
         current_line_highlight = "gutter";
@@ -93,8 +89,8 @@
         lsp = {
           gopls = {
             initialization_options = {
-              buildFlags = [];
-              directoryFilters = [];
+              buildFlags = [ ];
+              directoryFilters = [ ];
               codelenses = {
                 generate = true;
                 regenerate_cgo = true;
@@ -112,20 +108,12 @@
                 parameterNames = true;
                 rangeVariableTypes = true;
               };
-              analyses = {
-                shadow = true;
-              };
+              analyses = { shadow = true; };
             };
           };
-          pylsp = {
-            binary.path_lookup = true;
-          };
+          pylsp = { binary.path_lookup = true; };
           ruff = {
-            initialization_options = {
-              settings = {
-                lineLength = 120;
-              };
-            };
+            initialization_options = { settings = { lineLength = 120; }; };
           };
           nil = {
             binary.path = lib.getExe pkgs.nil;
@@ -135,20 +123,17 @@
           };
           vtsls = {
             settings = {
-              typescript = {
-                tsserver = { maxTsServerMemory = 16184; };
-              };
+              typescript = { tsserver = { maxTsServerMemory = 16184; }; };
             };
           };
         };
         languages = {
           Python = {
-            language_servers = [ "pylsp" "ruff" "python-refactoring" "!pyright" "..." ];
+            language_servers =
+              [ "pylsp" "ruff" "python-refactoring" "!pyright" "..." ];
             format_on_save = "on";
             formatter = [
-              {
-                language_server = { name = "ruff"; };
-              }
+              { language_server = { name = "ruff"; }; }
               {
                 code_actions = {
                   "source.fixAll.ruff" = true;
@@ -157,16 +142,17 @@
               }
             ];
           };
-          Nix = {
-            language_servers = [ "nil" "!nixd" "..." ];
-          };
+          Nix = { language_servers = [ "nil" "!nixd" "..." ]; };
         };
       };
     };
 
     xdg.configFile."zed/tasks.json".text = builtins.toJSON [
       # Example hardcoded tasks:
-      { label = "build"; command = "go build ./..."; }
+      {
+        label = "build";
+        command = "go build ./...";
+      }
     ];
 
     home.packages = with pkgs; [
@@ -185,6 +171,8 @@
       tig
       diff-so-fancy
       tree
+      nerd-fonts.meslo-lg
+      lsd
       thunderbird
       sublime-merge
       obsidian
